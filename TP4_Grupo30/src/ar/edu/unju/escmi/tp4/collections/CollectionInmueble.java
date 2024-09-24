@@ -14,6 +14,23 @@ public class CollectionInmueble {
         System.out.println("TERRENO AGREGADO CORRECTAMENTE");
     }
 
+    public static Terreno buscarTerreno(String codigo) {
+        for (Terreno terreno : terrenos) {
+            if (terreno.getCodigo().equals(codigo)) {
+                return terreno;
+            }
+        }
+        return null;
+    }
+    
+    public static void cambiarEstado(String codigo) {
+        for (Terreno terreno : terrenos) {
+            if (terreno.getCodigo().equals(codigo)) {
+                terreno.setEstado(false);
+            }
+        }
+    }
+    
     public static void agregarVivienda(Vivienda vivienda) {
         viviendas.add(vivienda);
         System.out.println("VIVIENDA AGREGADA CORRECTAMENTE");

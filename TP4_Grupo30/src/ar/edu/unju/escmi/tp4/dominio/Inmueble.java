@@ -20,6 +20,10 @@ public abstract class Inmueble {
         return precio;
     }
 
+    public void setEstado(boolean estado) {
+    	this.estado = estado;
+    }
+    
     public boolean isEstado() {
         return estado;
     }
