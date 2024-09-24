@@ -20,6 +20,7 @@ public class Vivienda extends Inmueble {
 	public void setCantidadHabitaciones(int cantidadHabitaciones) {
 		this.cantidadHabitaciones = cantidadHabitaciones;
 	}
+	
 
 	public Vivienda(String codigo, double precioAlquiler, String direccion,int cantidadHabitaciones, boolean estado) {
         super(codigo, precioAlquiler, estado);

@@ -1,8 +1,13 @@
 package ar.edu.unju.escmi.tp4.main;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
+import ar.edu.unju.escmi.tp4.collections.CollectionCliente;
 import ar.edu.unju.escmi.tp4.collections.CollectionInmueble;
+import ar.edu.unju.escmi.tp4.collections.CollectionVivienda;
+import ar.edu.unju.escmi.tp4.dominio.Cliente;
+import ar.edu.unju.escmi.tp4.dominio.ContratoAlquiler;
 import ar.edu.unju.escmi.tp4.dominio.Terreno;
 import ar.edu.unju.escmi.tp4.dominio.Vivienda;
 
@@ -36,6 +41,56 @@ public class Main {
 	                case 2:
 	                    registrarVivienda(scanner);
 	                    break;
+	                case 3:
+	                	System.out.println("Ingrese el nombre del cliente:");
+	                    String nombre = scanner.next();
+	                    System.out.println("Ingrese el apellido del cliente:");
+	                    String apellido = scanner.next();
+	                    System.out.println("Ingrese el DNI del cliente:");
+	                    String dni = scanner.next();
+	                    System.out.println("Ingrese el teléfono del cliente:");
+	                    String telefono = scanner.next();
+	                    System.out.println("Ingrese la dirección del cliente:");
+	                    String direccion = scanner.next();
+	                    System.out.println("Ingrese el email del cliente:");
+	                    String email = scanner.next();
+
+	                    Cliente cliente = new Cliente(nombre, apellido, dni, telefono, direccion, email);
+	                    CollectionCliente.agregarCliente(cliente);
+	                    System.out.println("Cliente registrado exitosamente.");
+	                    break;
+	                
+	                case 4:
+	                    CollectionVivienda.mostrarViviendasDisponibles();
+
+	                    System.out.println("Ingrese el código de la vivienda que desea alquilar:");
+	                    String codigoVivienda = scanner.next();
+
+	                    Vivienda viviendaSeleccionada = CollectionVivienda.buscarViviendaPorCodigo(codigoVivienda);
+	                    if (viviendaSeleccionada != null && viviendaSeleccionada.isEstado()) {
+	                        System.out.println("Ingrese el DNI del cliente:");
+	                        String dniCliente = scanner.next();
+
+	                        Cliente clienteSeleccionado = CollectionCliente.buscarClientePorDNI(dniCliente);
+	                        if (clienteSeleccionado != null) {
+	                            System.out.println("Ingrese los gastos de la inmobiliaria:");
+	                            double gastosInmobiliaria = scanner.nextDouble();
+	                        		
+
+	                            ContratoAlquiler contrato = new ContratoAlquiler(viviendaSeleccionada, clienteSeleccionado, gastosInmobiliaria, LocalDate.now());
+	                            System.out.println("Contrato registrado exitosamente.");
+	                            contrato.mostrarDatos();
+
+	                            // Cambiar estado de la vivienda a no disponible
+	                            viviendaSeleccionada.isEstado();
+	                        } else {
+	                            System.out.println("Cliente no encontrado.");
+	                        }
+	                    } else {
+	                        System.out.println("Vivienda no disponible o no encontrada.");
+	                    }
+	                	break;
+	                 
 	                case 9:
 	                    System.out.println("SALIENDO DEL MENU");
 	                    break;
