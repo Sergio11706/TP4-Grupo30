@@ -46,53 +46,65 @@ public class Main {
 	                    registrarVivienda(scanner);
 	                    break;
 	                case 3:
-	                	System.out.println("Ingrese el nombre del cliente:");
-	                    String nombre = scanner.next();
-	                    System.out.println("Ingrese el apellido del cliente:");
-	                    String apellido = scanner.next();
-	                    System.out.println("Ingrese el DNI del cliente:");
-	                    String dni = scanner.next();
-	                    System.out.println("Ingrese el teléfono del cliente:");
-	                    String telefono = scanner.next();
-	                    System.out.println("Ingrese la dirección del cliente:");
-	                    String direccion = scanner.next();
-	                    System.out.println("Ingrese el email del cliente:");
-	                    String email = scanner.next();
-
-	                    Cliente cliente = new Cliente(nombre, apellido, dni, telefono, direccion, email);
-	                    CollectionCliente.agregarCliente(cliente);
-	                    System.out.println("Cliente registrado exitosamente.");
+	                	registrarCliente(scanner);
 	                    break;
 	                
 	                case 4:
-	                    CollectionVivienda.mostrarViviendasDisponibles();
+	                	System.out.println("\n");
+	                	List<Vivienda> viviendasA = CollectionInmueble.viviendas;
+	                	for (Vivienda vivienda : viviendasA) {
+	                	    if (vivienda.isEstado()) {
+	                	        vivienda.mostrarDatos();
+	                	    }
+	                	}
+	                	System.out.println("\nIngrese el codigo de la vivienda que busca alquilar: ");
+	                	String codVivienda = scanner.nextLine();
+	                	
+	                	System.out.println("\n");
+	                	List<Cliente> clientela = CollectionCliente.clientes;
+	                	for (Cliente cliente : clientela) {
+	                		cliente.mostrarDatos();
+	                	}
+	                	System.out.println("\nIngrese el DNI del inquilino: ");
+	                	String dniInquilino = scanner.nextLine();
+	                	
+	                	Cliente inquilino = CollectionCliente.buscarClientePorDNI(dniInquilino);
+	                	Vivienda viviendaAlquilada = CollectionInmueble.buscarVivienda(codVivienda);
 
-	                    System.out.println("Ingrese el código de la vivienda que desea alquilar:");
-	                    String codigoVivienda = scanner.next();
+	                	if(inquilino!=null || viviendaAlquilada!=null) {
+	                		System.out.print("\nIngrese nombre de la inmobiliaria: ");
+	                		String nombreInm = scanner.nextLine();
+	                		
+	                		System.out.print("\nIngrese telefono de la inmobiliaria: ");
+	                		int telefonoInm = scanner.nextInt();
+	                		scanner.nextLine();
+	                		
+	                		System.out.print("\nIngrese direccion de la inmobiliaria: ");
+	                		String direccionInm = scanner.nextLine();
+	                		
+	                		Inmobiliaria InmobiliariaAlquiler = new Inmobiliaria(nombreInm, telefonoInm, direccionInm);
 
-	                    Vivienda viviendaSeleccionada = CollectionVivienda.buscarViviendaPorCodigo(codigoVivienda);
-	                    if (viviendaSeleccionada != null && viviendaSeleccionada.isEstado()) {
-	                        System.out.println("Ingrese el DNI del cliente:");
-	                        String dniCliente = scanner.next();
-
-	                        Cliente clienteSeleccionado = CollectionCliente.buscarClientePorDNI(dniCliente);
-	                        if (clienteSeleccionado != null) {
-	                            System.out.println("Ingrese los gastos de la inmobiliaria:");
-	                            double gastosInmobiliaria = scanner.nextDouble();
-	                        		
-
-	                            ContratoAlquiler contrato = new ContratoAlquiler(viviendaSeleccionada, clienteSeleccionado, gastosInmobiliaria, LocalDate.now());
-	                            System.out.println("Contrato registrado exitosamente.");
-	                            contrato.mostrarDatos();
-
-	                            // Cambiar estado de la vivienda a no disponible
-	                            viviendaSeleccionada.isEstado();
-	                        } else {
-	                            System.out.println("Cliente no encontrado.");
-	                        }
-	                    } else {
-	                        System.out.println("Vivienda no disponible o no encontrada.");
-	                    }
+	                		System.out.println("\nIngrese el codigo del contrato de alquiler: ");
+	                		String codContratoAlquiler = scanner.nextLine();
+	                		
+	                		System.out.println("\nIngrese la duracion del contrato: ");
+	                		Double duracionContrato = scanner.nextDouble();
+	           	                		
+	                		System.out.println("\nIngrese los gastos de la inmobiliaria: ");
+	                		Double gastosInm = scanner.nextDouble();
+	                		                		
+	                		ContratoAlquiler contrato = new ContratoAlquiler(codContratoAlquiler, LocalDate.now(), inquilino, InmobiliariaAlquiler, duracionContrato, gastosInm, viviendaAlquilada);
+	                		
+	                		CollectionContrato.agregarContrato(contrato);
+	                		
+	                		CollectionInmueble.cambiarEstadoVivienda(codVivienda);
+	                		
+	                		contrato.mostrarDatos();
+	                		System.out.println("\nContrato realizado correctamente.\n");
+	                	}
+	                	else {
+	                		System.out.println("\nError al realizar el contrato.\n");
+	                	}     	
 	                	break;
 	                
 	                case 5:
@@ -222,6 +234,34 @@ public class Main {
         Vivienda vivienda = new Vivienda(codigo, precioAlquiler, direccion, cantidadHabitaciones, disponible);
         CollectionInmueble.agregarVivienda(vivienda);
         vivienda.mostrarDatos();
+        System.out.println("\n");
+	}
+	
+	private static void registrarCliente(Scanner scanner) {
+		System.out.println("\nIngrese los datos del cliente\n");
+		
+    	System.out.println("Ingrese el nombre del cliente:");
+        String nombre = scanner.next();
+        
+        System.out.println("Ingrese el apellido del cliente:");
+        String apellido = scanner.next();
+        
+        System.out.println("Ingrese el DNI del cliente:");
+        String dni = scanner.next();
+        
+        System.out.println("Ingrese el teléfono del cliente:");
+        String telefono = scanner.next();
+        
+        System.out.println("Ingrese la dirección del cliente:");
+        String direccion = scanner.next();
+        
+        System.out.println("Ingrese el email del cliente:");
+        String email = scanner.next();
+
+        Cliente cliente = new Cliente(nombre, apellido, dni, telefono, direccion, email);
+        CollectionCliente.agregarCliente(cliente);
+        cliente.mostrarDatos();
+        System.out.println("\n");
 	}
 	
 }
