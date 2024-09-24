@@ -9,8 +9,9 @@ public class CollectionCliente {
 
     public static void agregarCliente(Cliente cliente) {
         clientes.add(cliente);
+        System.out.println("Cliente agregado correctamente.");
     }
-
+    
     public static Cliente buscarClientePorDNI(String dni) {
         for (Cliente cliente : clientes) {
             if (cliente.getDni().equals(dni)) {
