@@ -31,6 +31,10 @@ public class CollectionInmueble {
         }
     }
     
+    public static double calcularMontoTotalVentas() {
+        return terrenos.stream().filter(t -> !t.isEstado()).mapToDouble(Terreno::getPrecio).sum();
+    }
+    
     public static void agregarVivienda(Vivienda vivienda) {
         viviendas.add(vivienda);
         System.out.println("VIVIENDA AGREGADA CORRECTAMENTE");

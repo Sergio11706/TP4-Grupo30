@@ -7,7 +7,7 @@ import java.util.Scanner;
 import ar.edu.unju.escmi.tp4.collections.CollectionCliente;
 import ar.edu.unju.escmi.tp4.collections.CollectionContrato;
 import ar.edu.unju.escmi.tp4.collections.CollectionInmueble;
-import ar.edu.unju.escmi.tp4.collections.CollectionVivienda;
+//import ar.edu.unju.escmi.tp4.collections.CollectionVivienda;
 import ar.edu.unju.escmi.tp4.dominio.Cliente;
 import ar.edu.unju.escmi.tp4.dominio.ContratoAlquiler;
 import ar.edu.unju.escmi.tp4.dominio.ContratoCVT;
@@ -180,6 +180,21 @@ public class Main {
 	                	default: System.out.println();
 	                	}
 	                	
+	                case 7:
+	                	System.out.println("\nViviendas alquiladas:");
+	                    List<Vivienda> viviendasAlquiladas = CollectionInmueble.viviendas;
+	                    viviendasAlquiladas.stream().filter(v -> !v.isEstado()).forEach(Vivienda::mostrarDatos);
+	                	break;
+	                
+	                case 8:
+	                	System.out.println("\nTerrenos vendidos:");
+	                    List<Terreno> terrenosVendidos = CollectionInmueble.terrenos;
+	                    terrenosVendidos.stream().filter(t -> !t.isEstado()).forEach(Terreno::mostrarDatos);
+	                    
+	                    double montoTotalVentas = CollectionInmueble.calcularMontoTotalVentas();
+	                    System.out.printf("Monto total de todas las ventas: %.2f\n", montoTotalVentas);
+	                	break;
+	                
 	                case 9:
 	                    System.out.println("SALIENDO DEL MENU");
 	                    break;
