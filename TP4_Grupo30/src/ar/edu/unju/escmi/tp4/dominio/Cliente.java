@@ -73,7 +73,7 @@ public class Cliente {
 	
     
 	public void mostrarDatos() {
-        System.out.println("Nombre: " + nombre + " " + apellido);
+        System.out.println("\nNombre: " + nombre + " " + apellido);
         System.out.println("DNI: " + dni);
         System.out.println("Teléfono: " + telefono);
         System.out.println("Dirección: " + direccion);

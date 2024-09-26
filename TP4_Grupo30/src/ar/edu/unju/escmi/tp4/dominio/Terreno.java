@@ -40,7 +40,11 @@ public class Terreno extends Inmueble {
 
     @Override
     public void mostrarDatos() {
-        System.out.println("Terreno: " + codigo + ", Precio: $ " + precio +", Latitud: " + latitud + ", Longitud: " + longitud + ", Superficie: " + superficie + "m²");
+        System.out.println("\nCodigo Terreno: "+ codigo);
+        System.out.println("Precio: $" + precio);
+        System.out.println("Latitud: " + latitud);
+        System.out.println("Longitud: " + longitud);
+        System.out.println("Superficie: " + superficie + "m²");
     }
 
 }

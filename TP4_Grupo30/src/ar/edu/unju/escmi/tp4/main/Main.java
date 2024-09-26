@@ -7,7 +7,6 @@ import java.util.Scanner;
 import ar.edu.unju.escmi.tp4.collections.CollectionCliente;
 import ar.edu.unju.escmi.tp4.collections.CollectionContrato;
 import ar.edu.unju.escmi.tp4.collections.CollectionInmueble;
-//import ar.edu.unju.escmi.tp4.collections.CollectionVivienda;
 import ar.edu.unju.escmi.tp4.dominio.Cliente;
 import ar.edu.unju.escmi.tp4.dominio.ContratoAlquiler;
 import ar.edu.unju.escmi.tp4.dominio.ContratoCVT;
@@ -50,47 +49,48 @@ public class Main {
 	                    break;
 	                
 	                case 4:
-	                	System.out.println("\n");
+	                	
 	                	List<Vivienda> viviendasA = CollectionInmueble.viviendas;
 	                	for (Vivienda vivienda : viviendasA) {
 	                	    if (vivienda.isEstado()) {
 	                	        vivienda.mostrarDatos();
 	                	    }
 	                	}
-	                	System.out.println("\nIngrese el codigo de la vivienda que busca alquilar: ");
+	                	
+	                	System.out.print("\nSeleccione el codigo de la vivienda que busca alquilar: ");
 	                	String codVivienda = scanner.nextLine();
 	                	
-	                	System.out.println("\n");
 	                	List<Cliente> clientela = CollectionCliente.clientes;
 	                	for (Cliente cliente : clientela) {
 	                		cliente.mostrarDatos();
 	                	}
-	                	System.out.println("\nIngrese el DNI del inquilino: ");
+	                	
+	                	System.out.print("\nSeleccione el DNI del inquilino: ");
 	                	String dniInquilino = scanner.nextLine();
 	                	
 	                	Cliente inquilino = CollectionCliente.buscarClientePorDNI(dniInquilino);
 	                	Vivienda viviendaAlquilada = CollectionInmueble.buscarVivienda(codVivienda);
 
-	                	if(inquilino!=null || viviendaAlquilada!=null) {
+	                	if(inquilino!=null && viviendaAlquilada!=null) {
 	                		System.out.print("\nIngrese nombre de la inmobiliaria: ");
 	                		String nombreInm = scanner.nextLine();
 	                		
-	                		System.out.print("\nIngrese telefono de la inmobiliaria: ");
+	                		System.out.print("Ingrese telefono de la inmobiliaria: ");
 	                		int telefonoInm = scanner.nextInt();
 	                		scanner.nextLine();
 	                		
-	                		System.out.print("\nIngrese direccion de la inmobiliaria: ");
+	                		System.out.print("Ingrese direccion de la inmobiliaria: ");
 	                		String direccionInm = scanner.nextLine();
 	                		
 	                		Inmobiliaria InmobiliariaAlquiler = new Inmobiliaria(nombreInm, telefonoInm, direccionInm);
 
-	                		System.out.println("\nIngrese el codigo del contrato de alquiler: ");
+	                		System.out.print("\nIngrese el codigo del contrato de alquiler: ");
 	                		String codContratoAlquiler = scanner.nextLine();
 	                		
-	                		System.out.println("\nIngrese la duracion del contrato: ");
+	                		System.out.print("\nIngrese la duracion del contrato: ");
 	                		Double duracionContrato = scanner.nextDouble();
 	           	                		
-	                		System.out.println("\nIngrese los gastos de la inmobiliaria: ");
+	                		System.out.print("\nIngrese los gastos de la inmobiliaria: ");
 	                		Double gastosInm = scanner.nextDouble();
 	                		                		
 	                		ContratoAlquiler contrato = new ContratoAlquiler(codContratoAlquiler, LocalDate.now(), inquilino, InmobiliariaAlquiler, duracionContrato, gastosInm, viviendaAlquilada);
@@ -99,43 +99,45 @@ public class Main {
 	                		
 	                		CollectionInmueble.cambiarEstadoVivienda(codVivienda);
 	                		
+	                		System.out.println("\nCONTRATO REALIZADO CORRECTAMENTE");
 	                		contrato.mostrarDatos();
-	                		System.out.println("\nContrato realizado correctamente.\n");
 	                	}
 	                	else {
-	                		System.out.println("\nError al realizar el contrato.\n");
+	                		System.out.println("\nERROR AL REALIZAR CONTRATO\n");
 	                	}     	
 	                	break;
 	                
 	                case 5:
 	                	List<Terreno> terrenos = CollectionInmueble.terrenos;
 	                	terrenos.stream().filter(terreno -> terreno.isEstado()).forEach(terreno -> terreno.mostrarDatos());
+	                	
 	                	System.out.print("\nSeleccione el terreno a vender: ");
 	                	String codTerreno = scanner.nextLine();
 	                	
 	                	List<Cliente> clientes = CollectionCliente.clientes;
 	                	clientes.stream().forEach(cliente1 -> cliente1.mostrarDatos());
+	                	
 	                	System.out.print("\nSeleccione el DNI del comprador: ");
 	                	String dniComprador = scanner.nextLine();
 	                	
 	                	Cliente comprador = CollectionCliente.buscarClientePorDNI(dniComprador);
 	                	Terreno terrenoVendido = CollectionInmueble.buscarTerreno(codTerreno);
 	                	
-	                	if(comprador!=null || terrenoVendido!=null) {
+	                	if(comprador!=null && terrenoVendido!=null) {
 	                		
 	                		System.out.print("\nIngrese nombre de la inmobiliaria: ");
 	                		String nombreINM = scanner.nextLine();
 	                		
-	                		System.out.print("\nIngrese telefono de la inmobiliaria: ");
+	                		System.out.print("Ingrese telefono de la inmobiliaria: ");
 	                		int telefonoINM = scanner.nextInt();
 	                		scanner.nextLine();
 	                		
-	                		System.out.print("\nIngrese direccion de la inmobiliaria: ");
+	                		System.out.print("Ingrese direccion de la inmobiliaria: ");
 	                		String direccionINM = scanner.nextLine();
 	                		
 	                		Inmobiliaria nuevaInmobiliaria = new Inmobiliaria(nombreINM, telefonoINM, direccionINM);
 	                		
-	                		System.out.println("\nIngrese los impuestos: ");
+	                		System.out.print("\nIngrese los impuestos: ");
 	                		double impuesto = scanner.nextDouble();
 	                		scanner.nextLine();
 	                		
@@ -146,14 +148,13 @@ public class Main {
 	                		
 	                		CollectionContrato.agregarContratoCVT(contrato);
 	                		
-	                		CollectionInmueble.cambiarEstado(codTerreno);
+	                		CollectionInmueble.cambiarEstadoTerreno(codTerreno);
 	                		
+	                		System.out.println("\nCONTRATO REALIZADO CORRECTAMENTE");
 	                		contrato.mostrarDatos();
-	                		
-	                		System.out.println("\n\nCONTRATO REALIZADO CORRECTAMENTE\n");
 	                	}
 	                	else {
-	                		System.out.println("\n\nERROR AL REALIZAR CONTRATO\n");
+	                		System.out.println("\nERROR AL REALIZAR CONTRATO\n");
 	                	}
 	                	break;
 	                	
@@ -179,15 +180,16 @@ public class Main {
 	                	
 	                	default: System.out.println();
 	                	}
+	                break;
 	                	
 	                case 7:
-	                	System.out.println("\nViviendas alquiladas:");
+	                	System.out.print("\nViviendas alquiladas:");
 	                    List<Vivienda> viviendasAlquiladas = CollectionInmueble.viviendas;
 	                    viviendasAlquiladas.stream().filter(v -> !v.isEstado()).forEach(Vivienda::mostrarDatos);
 	                	break;
 	                
 	                case 8:
-	                	System.out.println("\nTerrenos vendidos:");
+	                	System.out.print("\nTerrenos vendidos:");
 	                    List<Terreno> terrenosVendidos = CollectionInmueble.terrenos;
 	                    terrenosVendidos.stream().filter(t -> !t.isEstado()).forEach(Terreno::mostrarDatos);
 	                    
@@ -196,10 +198,10 @@ public class Main {
 	                	break;
 	                
 	                case 9:
-	                    System.out.println("SALIENDO DEL MENU");
+	                    System.out.println("\n*****SALIENDO DEL MENU*****\n");
 	                    break;
 	                default:
-	                    System.out.println("OPCION INVALIDA. Intentelo nuevamente");
+	                    System.out.println("\nOPCION INVALIDA. Intentelo nuevamente\n");
 	            }
 	        } while(opc != 9);
 
@@ -208,75 +210,88 @@ public class Main {
 
 
 	private static void registrarTerreno(Scanner scanner) {
-		
-		System.out.println("\nINGRESE LOS DATOS DEL TERRENO\n");
-        System.out.print("Codigo: ");
+		System.out.println("\nINGRESE LOS DATOS DEL TERRENO");
+        
+		System.out.print("Codigo: ");
         String codigo = scanner.nextLine();
+        
         System.out.print("Precio de venta: ");
         double precio = scanner.nextDouble();
+        
         System.out.print("Latitud: ");
         double latitud = scanner.nextDouble();
+        
         System.out.print("Longitud: ");
         double longitud = scanner.nextDouble();
+        
         System.out.print("Superficie (m²): ");
         double superficie = scanner.nextDouble();
         scanner.nextLine();  
+        
         System.out.print("¿Está disponible? (true/false): ");
         boolean disponible = scanner.nextBoolean();
         scanner.nextLine(); 
-
     
         Terreno terreno = new Terreno(codigo, precio, latitud, longitud, superficie, disponible);
         CollectionInmueble.agregarTerreno(terreno);
+        
+        System.out.println("\nTERRENO AGREGADO CORRECTAMENTE");
         terreno.mostrarDatos();
         }
 	
 	private static void registrarVivienda(Scanner scanner) {
-		System.out.println("\nINGRESE LOS DATOS DE LA VIVIENDA\n");
-        System.out.print("Codigo: ");
+		System.out.println("\nINGRESE LOS DATOS DE LA VIVIENDA");
+        
+		System.out.print("Codigo: ");
         String codigo = scanner.nextLine();
+        
         System.out.print("Precio de alquiler mensual: ");
         double precioAlquiler = scanner.nextDouble();
         scanner.nextLine();  
+        
         System.out.print("Dirección: ");
         String direccion = scanner.nextLine();
+        
         System.out.print("Cantidad de habitaciones: ");
         int cantidadHabitaciones = scanner.nextInt();
+        
         System.out.print("¿Está disponible? (true/false): ");
         boolean disponible = scanner.nextBoolean();
         scanner.nextLine(); 
 
         Vivienda vivienda = new Vivienda(codigo, precioAlquiler, direccion, cantidadHabitaciones, disponible);
         CollectionInmueble.agregarVivienda(vivienda);
+        
+        System.out.println("\nVIVIENDA AGREGADA CORRECTAMENTE");
         vivienda.mostrarDatos();
-        System.out.println("\n");
 	}
 	
 	private static void registrarCliente(Scanner scanner) {
-		System.out.println("\nIngrese los datos del cliente\n");
+		System.out.println("\nINGRESE LOS DATOS DEL CLIENTE");
 		
-    	System.out.println("Ingrese el nombre del cliente:");
+    	System.out.print("Ingrese el nombre del cliente:");
         String nombre = scanner.next();
         
-        System.out.println("Ingrese el apellido del cliente:");
+        System.out.print("Ingrese el apellido del cliente:");
         String apellido = scanner.next();
         
-        System.out.println("Ingrese el DNI del cliente:");
+        System.out.print("Ingrese el DNI del cliente:");
         String dni = scanner.next();
         
-        System.out.println("Ingrese el teléfono del cliente:");
+        System.out.print("Ingrese el teléfono del cliente:");
         String telefono = scanner.next();
         
-        System.out.println("Ingrese la dirección del cliente:");
+        System.out.print("Ingrese la dirección del cliente:");
         String direccion = scanner.next();
         
-        System.out.println("Ingrese el email del cliente:");
+        System.out.print("Ingrese el email del cliente:");
         String email = scanner.next();
 
         Cliente cliente = new Cliente(nombre, apellido, dni, telefono, direccion, email);
         CollectionCliente.agregarCliente(cliente);
+        
+        System.out.println("\nCLIENTE AGREGADO CORRECTAMENTE");
         cliente.mostrarDatos();
-        System.out.println("\n");
 	}
 	
 }

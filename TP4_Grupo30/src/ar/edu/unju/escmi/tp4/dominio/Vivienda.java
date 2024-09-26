@@ -22,14 +22,18 @@ public class Vivienda extends Inmueble {
 	}
 	
 
-	public Vivienda(String codigo, double precioAlquiler, String direccion,int cantidadHabitaciones, boolean estado) {
-        super(codigo, precioAlquiler, estado);
+	public Vivienda(String codigo, double precio, String direccion,int cantidadHabitaciones, boolean estado) {
+        super(codigo, precio, estado);
         this.direccion = direccion;
         this.cantidadHabitaciones = cantidadHabitaciones;
     }
 
     @Override
-    public void mostrarDatos() {
-        System.out.println("Vivienda: " + codigo + ", Precio Alquiler: $ " + precio +  ", Dirección: " + direccion + ", Habitaciones: " + cantidadHabitaciones);
+	public void mostrarDatos() {
+        System.out.println("\nCodigo Vivienda: "+ codigo);
+        System.out.println("Precio Alquiler: $" + precio);
+        System.out.println("Dirección: " + direccion);
+        System.out.println("Habitaciones: " + cantidadHabitaciones);
     }
 }
+

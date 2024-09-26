@@ -18,7 +18,6 @@ public class CollectionContrato {
 
     public static void agregarContrato(ContratoAlquiler contrato) {
         contratos.add(contrato);
-        System.out.println("Contrato agregado correctamente.");
     }
 
 	
