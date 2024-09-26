@@ -15,7 +15,7 @@ public abstract class Contrato {
 		this.cliente = cliente;
 		this.inmobiliaria = inmobiliaria;
 		this.codigo = codigo;
-	}
+	} 
 
 	
 	public String getCodigo() {

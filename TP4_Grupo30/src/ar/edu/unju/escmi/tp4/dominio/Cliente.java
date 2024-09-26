@@ -15,7 +15,7 @@ public class Cliente {
         this.telefono = telefono;
         this.direccion = direccion;
         this.email = email;
-    }
+    } 
 
     
     public String getNombre() {

@@ -12,7 +12,7 @@ public class Inmobiliaria {
 		this.nombre = nombre;
 		this.telefono = telefono;
 		this.direccion = direccion;
-	}
+	} 
 
 
 	public String getNombre() {

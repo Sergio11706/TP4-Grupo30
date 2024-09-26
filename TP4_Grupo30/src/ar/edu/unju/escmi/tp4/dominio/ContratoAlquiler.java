@@ -16,7 +16,7 @@ public class ContratoAlquiler extends Contrato{
 		this.duracion = duracion;
 		this.gastosInm = gastosInm;
 		this.vivienda = vivienda;
-	}
+	} 
 
 
 	public double calcularMontoTotal() {

@@ -7,7 +7,7 @@ public class Vivienda extends Inmueble {
 
     public String getDireccion() {
 		return direccion;
-	}
+	} 
 
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;

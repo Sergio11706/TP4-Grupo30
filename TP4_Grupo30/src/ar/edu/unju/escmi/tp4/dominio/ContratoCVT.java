@@ -13,7 +13,7 @@ public class ContratoCVT extends Contrato {
 		
 		this.terreno = terreno;
 		this.impuesto = impuesto;
-	}
+	} 
 
 
 	public Terreno getTerreno() {

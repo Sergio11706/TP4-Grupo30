@@ -6,7 +6,7 @@ import java.util.List;
 import ar.edu.unju.escmi.tp4.dominio.ContratoAlquiler;
 import ar.edu.unju.escmi.tp4.dominio.ContratoCVT;
 
-public class CollectionContrato {
+public class CollectionContrato { 
 	
 	public static List<ContratoCVT> contratosCVT = new ArrayList<>();
 	

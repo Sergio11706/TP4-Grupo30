@@ -5,7 +5,7 @@ import ar.edu.unju.escmi.tp4.dominio.Vivienda;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CollectionInmueble {
+public class CollectionInmueble { 
     public static List<Terreno> terrenos = new ArrayList<>();
     public static List<Vivienda> viviendas = new ArrayList<>();
 

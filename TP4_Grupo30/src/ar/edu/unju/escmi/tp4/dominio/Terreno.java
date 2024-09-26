@@ -9,7 +9,7 @@ public class Terreno extends Inmueble {
     
 	public double getLatitud() {
 		return latitud;
-	}
+	} 
 
 	public void setLatitud(double latitud) {
 		this.latitud = latitud;

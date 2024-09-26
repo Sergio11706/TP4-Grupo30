@@ -21,7 +21,6 @@ public class Main {
 	        int opc;
 
 	        do {
-	        
 	            System.out.println("******** MENU ******** ");
 	            System.out.println("1. Registrar terreno");
 	            System.out.println("2. Registrar vivienda");

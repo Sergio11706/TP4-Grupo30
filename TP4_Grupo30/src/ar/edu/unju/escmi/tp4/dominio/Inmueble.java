@@ -10,7 +10,7 @@ public abstract class Inmueble {
         this.codigo = codigo;
         this.precio = precio;
         this.estado = estado;
-    }
+    } 
 
     public String getCodigo() {
         return codigo;
